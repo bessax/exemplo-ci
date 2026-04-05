@@ -16,16 +16,16 @@ jobs:
     - name: ⚙️ Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '10.0.x'
+        dotnet-version: '10.0.x'  # mais estável
 
     - name: 📦 Restore (API)
-      run: dotnet restore my-app-example-ci
+      run: dotnet restore my-app-example-ci/my-app-example-ci.csproj
 
     - name: 📦 Restore (Tests)
-      run: dotnet restore my-app-exemplo-ci-tests
+      run: dotnet restore my-app-exemplo-ci-tests/my-app-exemplo-ci-tests.csproj
 
-    - name: 🏗️ Build
-      run: dotnet build --no-restore
+    - name: 🏗️ Build (API)
+      run: dotnet build my-app-example-ci/my-app-example-ci.csproj --no-restore --configuration Release
 
     - name: 🧪 Testes
-      run: dotnet test my-app-exemplo-ci-tests --no-build --verbosity normal
+      run: dotnet test my-app-exemplo-ci-tests/my-app-exemplo-ci-tests.csproj --no-build --verbosity normal
